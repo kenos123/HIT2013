@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 	<head>
@@ -45,15 +45,40 @@
 				</section>
 
 				<section>
-					<h2>Ivan Doležal</h2>
-					<p>
-						<ul>
-							<li><a href="http://www.generalidevelopment.com">www.generalidevelopment.com</a>
-							<li>ivan.dolezal@gmail.com
-							<li><a href="http://www.octopuss.sk">www.octopuss.sk</a>
-							<li><a href="https://twitter.com/octopuss_svk">@octopuss_svk</a>
-						</ul>		
-					</p>
+					<section>
+						<h2>Ivan Doležal</h2>
+						<p>
+							<ul>
+								<li><a href="http://www.generalidevelopment.com">www.generalidevelopment.com</a>
+								<li>ivan.dolezal@gmail.com
+								<li><a href="http://www.octopuss.sk">www.octopuss.sk</a>
+								<li><a href="https://twitter.com/octopuss_svk">@octopuss_svk</a>
+							</ul>		
+						</p>
+					</section>
+					<section>
+						<h2>Doby dřevěné aneb každý nějak začínal</h2>
+					</section>
+					<section>
+						<h2>Rok 2003</h2>
+						<p><small>tabulky kam se podíváš</small></p>
+					</section>
+					<section>
+						<h2>Rok 2005</h2>
+						<p><small>kdo nemá Flash jakoby nebyl</small></p>
+					</section>
+					<section>
+						<h2>Rok 2008</h2>
+						<p><small>známe i Divy</small></p>
+					</section>
+					<section>
+						<h2>Rok 2010</h2>
+						<p><small>bez Javascript efektů by to nešlo</small></p>
+					</section>
+					<section>
+						<h2>Rok 2012</h2>
+						<p><small>nevymýšlet znovu kolo</small></p>
+					</section>
 				</section>
 
 				<!-- Example of nested vertical slides -->
@@ -70,6 +95,7 @@
 						<h2>Spring MVC</h2>
 						<ul>
 							<li>Principy Spring frameworku
+							<li>Spring MVC
 							<li>Nastavení Controlerů
 							<li>"Návratové typy obsahu"
 						</ul>		
@@ -87,49 +113,143 @@
 						<ul>
 							<li>Vlastní komponenty
 							<li>Dynamické CSS
-							<li>Twitter bootstrap
+							<li>CSS frameworky
 						</ul>		
 					</section>		
 				</section>
 
+
 				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview. Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+					<section>
+						<h2>Principy Spring frameworku</h2>
+						<p>www.springsource.org</p>	
+						<img src="images/spring-triangle.png" width="270px">
+					</section>
+					<section>
+						<h2>Definice aplikačního kontextu</h2>
+						<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;
+
+  &lt;bean id=&quot;...&quot; class=&quot;...&quot;&gt;
+    &lt;!-- collaborators and configuration for this bean go here --&gt;
+  &lt;/bean&gt;
+
+  &lt;!-- more bean definitions go here --&gt;
+
+&lt;/beans&gt;</code></pre>
+					</section>
+					<section>
+						<h2>Další Spring projekty</h2>
+						<p><small> tedy jen některé</small></p>
+						<ul>
+							<li><a href="http://www.springsource.org/spring-roo">Spring roo</a>
+							<li><a href="http://www.springsource.org/spring-security">Spring security</a>
+							<li><a href="http://www.springsource.org/spring-data">Spring data</a>
+							<li><a href="http://www.springsource.org/spring-web-services">Spring we services</a>
+							<li><a href="http://www.springsource.org/spring-social">Spring social</a>
+						</ul>
+						<p><small><em>http://www.springsource.org/projects</em></small></p>
+					</section>
 				</section>
 
 				<section>
-					<h2>rvl.io</h2>
-					<p>
-						If you don't like writing slides in HTML you can use the online editor <a href="http://www.rvl.io" target="_blank">rvl.io</a>.
-					</p>
+					<section>
+					<h2>Spring MVC</h2>
+					<p>součástí Spring frameworku</p>
+						<ul>
+							<li>flexibilní
+							<li>drží se konvencí
+							<li>validace, bezpečnost...
+						</ul>
+					</section>
+					<section>
+					<h2>Maven dependency</h2>
+					<pre><code class="xml">
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+     	&lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+      	&lt;version&gt;3.2.1.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+						</code></pre>
+					</section>
+				</section>
+				
+
+				<section>
+					<section>
+					<h2>Nastavení Controlerů</h2>
+					<pre><code>@Controller
+public class HelloWorldController {
+
+    @RequestMapping("/helloWorld")
+    public ModelAndView helloWorld() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("helloWorld");
+        mav.addObject("message", "Hello World!");
+        return mav;
+    }
+}
+					</code>
+				</pre>
+				<p><small>http://static.springsource.org/spring/docs/3.0.x/reference/mvc.html</small></p>
+				</section>
+				<section>
+					<h2>Složitější definice</h2>
+					<pre><code contenteditable>@Controller
+public class NotesController extends AbstractController {
+
+  @Autowired
+  private NotesRepository notesRepository;
+
+  @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE, produces = APPLICATION_JSON)
+  @ResponseBody
+  public JSONResponseEnvelope delete(@PathVariable("noteId") final Long noteId, final Model uiModel) {
+	notesRepository.delete(noteId);
+	return JSONResponseEnvelope.createSuccessResponse(noteId, messages.getMessage("ui.message.success.noteDelete"));
+  }
+}
+					</code></pre>
+				</section>
 				</section>
 
 				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
+					<section>
+					<h2>Návratové typy obsahu</h2>
+					často nepotřebujeme zobrazit jen prostý text, ale i strukturovaná data nebo obrázky
 				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
+					<section>
+					<h2>JSON výstup</h2>
+					<p>anotace @ResponseBody	
+					<pre><code>
+						{
+"employees": [
+{ "firstName":"John" , "lastName":"Doe" }, 
+{ "firstName":"Anna" , "lastName":"Smith" }, 
+{ "firstName":"Peter" , "lastName":"Jones" }
+]
+}
+					</code></pre>
 				</section>
-
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
+					<h2>Výstup metody jako obrázek</h2>
+					<pre><code>@RequestMapping(value = "/image", method = RequestMethod.GET, produces = "image/jpg")
+public @ResponseBody byte[] getFile()  {
+  try {
+  	Retrieve image from the classpath.
+    InputStream is = this.getClass().getResourceAsStream("/test.jpg"); 
+    BufferedImage img = ImageIO.read(is);
+    ByteArrayOutputStream bao = new ByteArrayOutputStream();
+   // Write to output stream
+   ImageIO.write(img, "jpg", bao);
+   return bao.toByteArray();
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}</code></pre>
+				</section>
 				</section>
 
 				<section data-markdown>
