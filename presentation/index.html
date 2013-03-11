@@ -6,19 +6,19 @@
 
 		<title>Generali Development s.r.o./ HIT Klastr</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
-
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link rel="stylesheet/less" type="text/css" href="css/theme/gdev.less" id="theme">
+		<script src="js/less.js"></script>
+		
+
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/github.css">
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
@@ -61,23 +61,28 @@
 					</section>
 					<section>
 						<h2>Rok 2003</h2>
-						<p><small>tabulky kam se podíváš</small></p>
+						<p><small>tabulky a "ifrejmy" kam se podíváš</small></p>
+						<img src="images/butterfly.jpg">
 					</section>
 					<section>
 						<h2>Rok 2005</h2>
 						<p><small>kdo nemá Flash jakoby nebyl</small></p>
+						<img src="images/flash.jpg">
 					</section>
 					<section>
 						<h2>Rok 2008</h2>
-						<p><small>známe i Divy</small></p>
+						<p><small>známe i Divy - přechod k semantickému webu</small></p>
+						<img src="images/ball.jpg">
 					</section>
 					<section>
 						<h2>Rok 2010</h2>
-						<p><small>bez Javascript efektů by to nešlo</small></p>
+						<p><small>bez Javascript efektů by to nešlo-dynamický web</small></p>
+						<img src="images/flower.jpg">
 					</section>
 					<section>
 						<h2>Rok 2012</h2>
-						<p><small>nevymýšlet znovu kolo</small></p>
+						<p><small>nevymýšlet znovu kolo - CSS frameworky</small></p>
+						<img src="images/dcs.jpg">
 					</section>
 				</section>
 
@@ -148,7 +153,7 @@
 							<li><a href="http://www.springsource.org/spring-roo">Spring roo</a>
 							<li><a href="http://www.springsource.org/spring-security">Spring security</a>
 							<li><a href="http://www.springsource.org/spring-data">Spring data</a>
-							<li><a href="http://www.springsource.org/spring-web-services">Spring we services</a>
+							<li><a href="http://www.springsource.org/spring-web-services">Spring web services</a>
 							<li><a href="http://www.springsource.org/spring-social">Spring social</a>
 						</ul>
 						<p><small><em>http://www.springsource.org/projects</em></small></p>
@@ -204,7 +209,7 @@ public class NotesController extends AbstractController {
   @Autowired
   private NotesRepository notesRepository;
 
-  @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE, produces = APPLICATION_JSON)
+  @RequestMapping(value = "/notes/{noteId}", method = RequestMethod.DELETE, produces = "application/json")
   @ResponseBody
   public JSONResponseEnvelope delete(@PathVariable("noteId") final Long noteId, final Model uiModel) {
 	notesRepository.delete(noteId);
@@ -223,15 +228,16 @@ public class NotesController extends AbstractController {
 					<section>
 					<h2>JSON výstup</h2>
 					<p>anotace @ResponseBody	
-					<pre><code>
-						{
-"employees": [
-{ "firstName":"John" , "lastName":"Doe" }, 
-{ "firstName":"Anna" , "lastName":"Smith" }, 
-{ "firstName":"Peter" , "lastName":"Jones" }
-]
-}
-					</code></pre>
+					<pre><code>{
+  "responseStatus": "SUCCESS",
+  "statusCode": 200,
+  "messages": [
+    {
+      "messageFormat": "TEXT",
+      "message": "Note was added successfully",
+    }
+  ]
+}</code></pre>
 				</section>
 				<section>
 					<h2>Výstup metody jako obrázek</h2>
@@ -263,24 +269,67 @@ public @ResponseBody byte[] getFile()  {
 					</section>	
 				</section>
 				<section>
+					<section>
 						<h2>AMD</h2>
 							<p><small>nemá nic s mikročipmi :)</small>
 							<ul>	
 							<li>jak zapouzdřit kus kódu do užitečné jednotky a jak zpřístupnit jeho schopnosti ostatním,
 							<li>jak definovat závislosti na jiných jednotkách kódu.
 							</ul>	
-						</ul>		
+						</ul>
 					</section>
 					<section>
-						<h2>MVC na view vrstvě</h2>
+						<h2>Ukázka jednoduchého modulu</h2>
+						<pre><code></code></pre>
+					</section>			
+					</section>
+					<section>
+						<section>
+						<h2>Šablony</h2>
 						<ul>
-							<li>Organizace knihoven
-							<li>AMD
-							<li>Šablony	
-						</ul>		
-					</section>	
-			</div>
+							<li>oddělení dat od způsobu zobrazení
+							<li>elegantní způsob jak dynamicky tvořit DOM
+							<li>cache a rendering na straně klienta
+							<li><a href="http://garann.github.com/template-chooser/">vyber si vlastní</a>
+						</ul>
+						</section>
 
+					</section>	
+					<section>
+						<section>
+							<h2>Mustache.js</h2>
+								<ul>
+							<li>jednoduché na použití
+							<li>žádná složitá logika (není if,foreach)
+							</ul>
+						</section>
+						<section>
+							<h2>Ukázka</h2>	
+							<p><small><a href="#/6/1">Data v JSON</a></small></p>
+							<pre><code contenteditable id="mustache-data" class="json">
+								
+							</code></pre>
+							<p><small>Šablona</small></p>
+							<pre><code contenteditable id="mustache-template">
+&lt;h1&gt;{{responseStatus}} - {{statusCode}}&lt;/h1&gt;
+&lt;ul&gt;
+{{#messages}}
+	&lt;li&gt;{{message}}&lt;/li&gt;
+{{/messages}}
+&lt;/ul&gt;
+							</code></pre>
+							<button class="btn" id="render-mustache">Maluj</button>
+						</section>
+						<section>
+							<h2>Tadáá</h2>
+							<div id="mustache-rendered"></textarea>
+						</section>	
+					</section>
+
+			</div>
+			<div id="footer">
+						<img src="images/gdev.jpg">
+					</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -295,7 +344,7 @@ public @ResponseBody byte[] getFile()  {
 				progress: true,
 				history: true,
 				center: true,
-
+				width: 1024,
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
