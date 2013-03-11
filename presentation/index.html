@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet/less" type="text/css" href="css/theme/gdev.less" id="theme">
 		<script src="js/less.js"></script>
-		
+		<script src="js/mustache.js"></script>
+		<script src="js/jquery-1.9.1.min.js"></script>
 
 
 		<!-- For syntax highlighting -->
@@ -234,7 +235,7 @@ public class NotesController extends AbstractController {
   "messages": [
     {
       "messageFormat": "TEXT",
-      "message": "Note was added successfully",
+      "message": "Note was added successfully"
     }
   ]
 }</code></pre>
@@ -305,24 +306,25 @@ public @ResponseBody byte[] getFile()  {
 						</section>
 						<section>
 							<h2>Ukázka</h2>	
-							<p><small><a href="#/6/1">Data v JSON</a></small></p>
-							<pre><code contenteditable id="mustache-data" class="json">
-								
-							</code></pre>
-							<p><small>Šablona</small></p>
-							<pre><code contenteditable id="mustache-template">
-&lt;h1&gt;{{responseStatus}} - {{statusCode}}&lt;/h1&gt;
+							<small><a href="#/6/1">Data v JSON</a></small>
+							<pre><code contenteditable id="mustache-data" class="json">{"responseStatus": "SUCCESS","statusCode": 200,
+  "messages": [
+  { "messageFormat": "TEXT",
+    "message": "Note was added successfully"
+  }
+    ]}</code></pre>
+							<small>Šablona</small>
+							<pre><code contenteditable id="mustache-template">&lt;h1&gt;{{responseStatus}} - {{statusCode}}&lt;/h1&gt;
 &lt;ul&gt;
 {{#messages}}
 	&lt;li&gt;{{message}}&lt;/li&gt;
 {{/messages}}
-&lt;/ul&gt;
-							</code></pre>
+&lt;/ul&gt;</code></pre>
 							<button class="btn" id="render-mustache">Maluj</button>
 						</section>
 						<section>
 							<h2>Tadáá</h2>
-							<div id="mustache-rendered"></textarea>
+							<div id="mustache-output"></textarea>
 						</section>	
 					</section>
 
@@ -334,33 +336,6 @@ public @ResponseBody byte[] getFile()  {
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
-
-		<script>
-
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-				width: 1024,
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
-
-		</script>
-
+		<script src="js/main.js"></script>
 	</body>
 </html>
