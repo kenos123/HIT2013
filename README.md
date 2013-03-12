@@ -1,4 +1,4 @@
 HIT2013
 =======
 
-HIT Caster resources
+HIT Cluster resources

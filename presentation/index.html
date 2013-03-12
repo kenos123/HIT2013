@@ -111,7 +111,7 @@
 						<ul>
 							<li>Organizace knihoven
 							<li>AMD
-							<li>Šablony	
+							<li>Mustache Šablony	
 						</ul>		
 					</section>	
 					<section>
@@ -327,6 +327,110 @@ public @ResponseBody byte[] getFile()  {
 							<div id="mustache-output"></textarea>
 						</section>	
 					</section>
+					<section>
+						<section>
+							<h2>Vlastní komponenty - zapouzdření HTML</h2>
+							<ul>
+								<li>zbstrakce nad HTML
+								<li>oddělení požadované funkcionality od implementace
+								<li>znovupoužitelnost	
+							</ul>	
+						</section>	
+						<section>
+							<h2>Příklad - generování tabulky</h2>
+							<pre><code>&lt;table&gt;
+  &lt;c:forEach begin=&quot;0&quot; end=&quot;${fn:length(items)}&quot; items=&quot;${items}&quot; var=&quot;item&quot;&gt;
+    &lt;tr&gt;
+      &lt;td&gt;${item.name}&lt;/td&gt;
+      &lt;td&gt;${item.price}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/c:forEach&gt;
+&lt;/table&gt;</code></pre>
+						</section>
+						<section>
+							<h2>Řešení 1/2 - vlastní tag</h2>
+							<pre><code>&lt;cust:table data=&quot;${items}&quot; /&gt;</code></pre>
+						</section>
+						<section>
+							<h2>Řešení 2/2 - implementace tagu</h2>
+							<pre><code></code></pre>
+						</section>
+					</section>
+					<section>
+						<section>
+							<h2>Dynamické CSS</h2>
+							<ul>
+								<li>zpřehledňuje CSS
+								<li>proměnné a mixiny
+								<li>znovupoužitelnost	
+								<li><a href="http://lesscss.org">LESS</a>	
+								<li><a href="http://sass-lang">Sass.</a>
+							</ul>
+						</section>
+						<section>
+							<h2>LESS příklad</h2>
+							<small>style.less</small>
+							<pre><code>.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+#header {
+  .rounded-corners(20px);
+}</code></pre>
+							<small>style.css</small>
+							<pre><code>#header {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+}</code></pre>
+						</section>
+						<section>
+							<h2>LESS příklad</h2>
+							<small>style.less</small>
+							<pre><code>@fontSize : 14px;						
+  p { font-size: @fontSize;
+    a { text-decoration: none;
+      &:hover { 
+    	border-width: 1px;
+      	font-size:@fontSize - 2;
+      }
+    }
+  }    
+</code></pre>
+							<small>style.css</small>
+							<pre><code>p {font-size: 14px;}
+p a {text-decoration: none;}
+p a:hover {border-width: 1px; font-size: 12px;}</code></pre>
+						</section>
+					</section>
+					<section>
+						<section>
+							<h2>CSS frameworky</h2>
+							<ul>
+								<li>cross browser kompatibilita</li>
+								<li>pro zákazníka i administrátora</li>
+								<li>většinou hezké:)</li>
+							</ul>
+						</section>
+						<section>
+							<h2>Příklady</h2>
+							<ul>
+								<li><a href="http://twitter.github.com/bootstrap/">Bootstrap</a>
+								<li><a href="http://formee.org/">formee</a>
+								<li><a href="http://960.gs/">960 grid system</a>
+								<li><a href="http://www.blueprintcss.org">Blueprint CSS </a>
+							</ul>
+						</section>	
+					</section>	
+					<section>
+							<h2>Děkuji za pozornost</h2>
+							<p><strong>materiály: </strong><a href="https://github.com/octopuss/HIT2013/">https://github.com/octopuss/HIT2013/</a></p>
 
 			</div>
 			<div id="footer">

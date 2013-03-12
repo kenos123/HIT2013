@@ -35,6 +35,7 @@ $("#render-mustache").click(function(){
 	 var data = $.parseJSON(stripHighlight($("#mustache-data")));
 	 var output = Mustache.render(template, data);
 	 $("#mustache-output").html(output);
+	 Reveal.down();
 });
 
 function strip(html)
