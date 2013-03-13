@@ -1,0 +1,9 @@
+<div class="navbar" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+      <div class="navbar-inner">
+          <a class="brand" href="#"><spring:message code="ui.heading.appName"/></a>
+      </div>
+</div>
