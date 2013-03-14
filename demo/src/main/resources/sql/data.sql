@@ -1,0 +1,1 @@
+insert into ITEM (name,price) values ('Bow',300)
