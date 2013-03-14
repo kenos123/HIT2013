@@ -17,9 +17,12 @@
   	<body>
    		    <tiles:insertAttribute name="header" ignore="true" />
    		    <div class="container-fluid">
+   		    <div class="row-fluid">
 		    <tiles:insertAttribute name="menu" ignore="true" />   
     		<tiles:insertAttribute name="body"/>
     		</div> 
+    		</div>
+    		<hr/>
 		    <tiles:insertAttribute name="footer" ignore="true"/>
 
 	</body>
