@@ -3,13 +3,13 @@
 <div id="menu" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags">
  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <jsp:output omit-xml-declaration="yes"/>
+  <spring:url value="/items" var="list_url" />
 <div class="span2">
  <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><spring:message code="ui.menu.heading"/></li>
-              <li><spring:message code="ui.action.listItems"/></li>
+              <li><a href="${list_url}"><spring:message code="ui.action.listItems"/></a></li>
             </ul>  
-  			<a href="" class="btn btn-primary"><i class="icon icon-plus-sign icon-white"><jsp:text /></i><spring:message code="ui.action.addItem"/></a>
 </div>
 </div>
 </div>

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <form:create id="fc_com_generalidevelopment_hit2013_Item" modelAttribute="item" path="/items" render="${empty dependencies}" z="MIKrfeBF9Zbo3QUYBnGLVq210O4=">
-        <field:input field="name" id="c_com_generalidevelopment_hit2013_Item_name" required="true" z="MiVuTOe0PvK/nWS6wg6yIB9QfKk="/>
-        <field:input field="price" id="c_com_generalidevelopment_hit2013_Item_price" required="true" validationMessageCode="field_invalid_number" z="WLdz6Vnd/sdPAWzgD95NGB6Jot0="/>
-    </form:create>
-    <form:dependency dependencies="${dependencies}" id="d_com_generalidevelopment_hit2013_Item" render="${not empty dependencies}" z="iwyjYxuZzYOCA+C0AWalfsth68Q="/>
+<div class="span10"  xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form"
+>
+<spring:url value="/items" var="list_url"/>
+<a href="${list_url}" class="btn btn-mini"><i class="icon icon-arrow-left"><jsp:text /></i><spring:message code="ui.action.back"/></a>
+<form:form action="${list_url}" modelAttribute="item">
+<table class="table">
+<caption><spring:message code="dom.item"/></caption>
+ <tr><td><spring:message code="dom.item.name"/></td><td><form:input path="name" cssClass="input-xxlarge"/></td></tr>	
+ <tr><td><spring:message code="dom.item.price"/></td><td><form:input path="price" cssClass="input-medium"/></td></tr>	
+</table>
+<form:button class="btn btn-inverse"><i class="icon icon-hdd icon-white"><jsp:text /></i><spring:message code="ui.action.save"/></form:button>
+</form:form>
+
+
 </div>

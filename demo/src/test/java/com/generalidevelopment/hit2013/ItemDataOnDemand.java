@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 import org.springframework.stereotype.Component;
 
+import com.generalidevelopment.hit2013.domain.Item;
+
 @Component
 @Configurable
 @RooDataOnDemand(entity = Item.class)

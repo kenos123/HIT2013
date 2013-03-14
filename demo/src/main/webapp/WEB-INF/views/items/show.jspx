@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_generalidevelopment_hit2013_Item" object="${item}" path="/items" z="/rOoetgQYi7FGHHO8frJAjeLDGw=">
-        <field:display field="name" id="s_com_generalidevelopment_hit2013_Item_name" object="${item}" z="r26qgD4QGBNjqzaeR8Fde7qAdGY="/>
-        <field:display field="price" id="s_com_generalidevelopment_hit2013_Item_price" object="${item}" z="c50CEeUs2itiMoYtU/ZsufLar6Y="/>
-    </page:show>
+<div class="span10"  xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form"
+>
+<spring:url value="/items" var="list_url"/>
+<a href="${list_url}" class="btn btn-mini"><i class="icon icon-arrow-left"><jsp:text /></i><spring:message code="ui.action.back"/></a>
+<table class="table">
+<caption><spring:message code="dom.item"/></caption>
+ <tr><td><spring:message code="dom.item.name"/></td><td>${item.name}</td></tr>	
+ <tr><td><spring:message code="dom.item.price"/></td><td>${item.price}</td></tr>	
+</table>
+
+
 </div>
