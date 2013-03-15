@@ -3,7 +3,24 @@
 	xmlns:spring="http://www.springframework.org/tags">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/" var="home_url"/>
+	<spring:url var="url_theme_standard" value="">
+        <spring:param name="theme" value="standard" />
+     </spring:url>   
+     <spring:url var="url_theme_spacelab" value="">
+        <spring:param name="theme" value="spacelab" />
+     </spring:url>
       <div class="navbar-inner">
-          <a class="brand" href="#"><spring:message code="ui.heading.appName"/></a>
+          <a class="brand" href="${home_url}"><spring:message code="ui.heading.appName"/></a>
+          <ul class="nav pull-right">
+                      <li class="divider-vertical"></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-module="dropdown" data-toggle="dropdown"><spring:message code="ui.action.theme" /> <b class="caret"><jsp:text/></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="${url_theme_standard}"><spring:message code="ui.theme.standard" /></a></li>
+                          <li><a href="${url_theme_spacelab}"><spring:message code="ui.theme.spacelab" /></a></li>
+                        </ul>
+                      </li>
+                    </ul>
       </div>
 </div>

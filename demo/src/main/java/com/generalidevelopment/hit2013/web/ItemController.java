@@ -12,11 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 import com.generalidevelopment.hit2013.domain.Item;
 import com.generalidevelopment.hit2013.repository.ItemRepository;
+import com.generalidevelopment.hit2013.util.AppContext;
+import com.generalidevelopment.hit2013.util.json.JSONResponseEnvelope;
 
 @RequestMapping("/items")
 @Controller
@@ -81,6 +84,15 @@ public class ItemController {
 		itemRepository.delete(item);
 		uiModel.asMap().clear();
 		return "redirect:/items";
+	}
+
+	@RequestMapping(value = "/{id}/json", method = RequestMethod.DELETE, produces = "application/json")
+	@ResponseBody
+	public JSONResponseEnvelope deleteJSON(@PathVariable("id") final Long id, final Model uiModel) {
+		final Item item = itemRepository.findOne(id);
+		itemRepository.delete(item);
+		uiModel.asMap().clear();
+		return JSONResponseEnvelope.createSuccessResponseMsg(AppContext.getMsg("ui.message.delete.success"));
 	}
 
 	void populateEditForm(final Model uiModel, final Item item) {

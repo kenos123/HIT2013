@@ -86,6 +86,14 @@
 		</property>
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<bean id="errorHandler" class="com.generalidevelopment.hit2013.util.error.DefaultErrorHandler">
+		<property name="loggerMap">
+			<map>
+				<entry key="Exception" value="error-log" />
+			</map>
+		</property>
+	</bean>
+	
 	<jpa:repositories base-package="com.generalidevelopment.hit2013.repository" />
 	<jdbc:initialize-database data-source="dataSource">
 		<jdbc:script location="classpath:/sql/data.sql"/>

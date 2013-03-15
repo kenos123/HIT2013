@@ -17,6 +17,9 @@
    				<form:form modelAttribute="item" method="DELETE" action="${list_url}/${item.id}" cssStyle="display:inline">
    					<button class="btn btn-danger btn-mini"><i class="icon-trash icon-white"><jsp:text/></i><spring:message code="ui.action.delete"/></button>
    				</form:form>
+   				<form:form modelAttribute="item" method="DELETE" action="${list_url}/${item.id}/json" cssStyle="display:inline">
+   					<button class="btn btn-danger btn-mini"><i class="icon-trash icon-white"><jsp:text/></i><spring:message code="ui.action.delete"/></button>
+   				</form:form>
    			</td>
    		</tr>	
    	</c:forEach>

@@ -1,12 +1,65 @@
 <jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
 
   <jsp:output omit-xml-declaration="yes" />
-
+	<spring:theme code="styleSheet" var="theme_css" />
+	 <spring:url value="/${theme_css}" var="theme_css_url" />
   <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
   <c:set var="userLocale">
     <c:set var="plocale">${pageContext.response.locale}</c:set>
     <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
   </c:set>
-<spring:url value="/resources/styles/bootstrap.css" var="style_url" />
-<link rel="stylesheet" href="${style_url}" />
+ <spring:message code="app.i18n.defaultLocale" var="defaultLocale"/> 
+ <spring:message code="app.debugJavaScript" var="appDebugJavaScript"/>
+ <spring:url value="/" var="appRootUrl"/>
+<link rel="stylesheet" href="${theme_css_url}" />
+<script type="text/javascript">
+/*Localization variables for JS mediator*/
+
+window.app = window.app || {};
+
+window.app.i18n = {
+    locale: '${defaultLocale}'
+};
+
+
+/* project specific paths for require.js*/
+	window.app.paths = {
+		'jquery' : 'libs/jquery/jquery-1.9.1.min',
+		'jqueryui-theme':'../css/jqueryui/gdev/gdev',
+		'jqueryui' : 'plugins/jqueryui',
+		'text' : 'libs/require/text',
+		'css' : 'libs/require/css',
+		'i18n' : 'libs/require/i18n',
+		'mustache' : 'libs/mustache',
+		'regexp' : 'libs/xregexp-all-min',
+		'gli-ui-web-styles' : '../css/gliui/gli-ui-web',
+		'jquery-loadmask-styles' : '../css/jquery-loadmask/jquery.loadmask',
+		'jquery-qtip-styles' : '../css/jquery.qtip',
+		'jquery-fullcalendar-styles' : '../css/jquery-fullcalendar/jquery.fullcalendar'
+	};
+	
+	/* Dependencies for non AMD scripts */
+	window.app.shim = {
+		"jquery"						: {exports : ["$"]},
+		"libs/jquery/json.min"			: ["jquery"],
+		"plugins/bootstrap.dropdown"	: {deps : ["jquery"], exports : "$.fn.dropdown"},
+	}
+
+	window.app.root = '${appRootUrl}';
+	window.app.debug = ${appDebugJavaScript+0};
+	</script>
+	<spring:url value="/resources/imgages" var="img_url" scope="request" />
+	<spring:url value="/resources/js/libs/html5.min.js" var="html5_url" />
+	<spring:url value="/resources/js/libs/require/require-2.1.5.min.js" var="require_js_url" />
+	<spring:url value="/resources/js/main.js" var="main_js_url" />
+	
+	<script type="text/javascript" src="${require_js_url}" data-main="${main_js_url}"><jsp:text/></script>
+	<jsp:text>
+		<![CDATA[<!--[if lt IE 9]>]]>
+	</jsp:text>
+	<script type="text/javascript" src="${html5_url}"><jsp:text/></script>
+	<jsp:text>
+		<![CDATA[<![endif]-->]]>
+	</jsp:text>
+	
 </jsp:root>

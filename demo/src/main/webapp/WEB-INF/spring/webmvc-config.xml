@@ -21,6 +21,7 @@
     <!-- Register "global" interceptor beans to apply to all registered HandlerMappings -->
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"/>
+        <bean id="themeChangeInterceptor" class="org.springframework.web.servlet.theme.ThemeChangeInterceptor" p:paramName="theme"/>
     </mvc:interceptors>
 
     <!-- Selects a static view for rendering without the need for an explicit controller -->
@@ -36,7 +37,13 @@
 
     <!-- Store preferred language configuration in a cookie -->
     <bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver" id="localeResolver" p:cookieName="locale"/>
-
+    
+    <!-- store preferred theme configuration in a cookie -->
+	<bean class="org.springframework.web.servlet.theme.CookieThemeResolver"	id="themeResolver" p:cookieName="theme" p:defaultThemeName="standard" />
+    
+	<!-- Resolves localized <theme_name>.properties files in the classpath to allow for theme support -->
+    <bean class="org.springframework.ui.context.support.ResourceBundleThemeSource" id="themeSource"/>
+    
     <!-- This bean resolves specific types of exceptions to corresponding logical - view names for error views. 
     The default behaviour of DispatcherServlet - is to propagate all exceptions to the servlet 
     container: this will happen - here with all other types of exceptions. -->
@@ -64,4 +71,15 @@
     </property>
   </bean>
 <bean class="com.generalidevelopment.hit2013.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
+
+<bean class="com.generalidevelopment.hit2013.util.AjaxHandlerExceptionResolver">
+		<property name="errorHandler" ref="errorHandler" />
+</bean>
+
+
+
+<!-- provider of application context to non spring beans (enums...) -->
+	<bean id="contextApplicationContextProvider"
+		class="com.generalidevelopment.hit2013.util.ApplicationContextProvider" />
+
 </beans>
