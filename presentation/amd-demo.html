@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Generali Development s.r.o./ HIT Klastr / AMD demo</title>
+		<link rel="stylesheet" type="text/css" href="css/todo.css">
+		<script src="js/require-2.1.5.min.js"></script>
+		<script type="text/javascript">
+			//configuration of js paths
+			var config = {'paths': {
+					'todo':"js/todo",
+					'jquery':"js/jquery-1.9.1.min"
+				}};
+
+			//initialization of application
+			require.config(config);
+			require(["todo"], function(app) {
+			  	app.init();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>"TODO"</h1>
+		<p> příklad AMD modulu </p>
+		<ul id="todo">
+  			<li>Přednáška</li>
+    		<li>Jídlo</li>
+    		<li>Hospoda</li>
+		</ul>
+		<div id="footer">
+				<img src="images/gdev.jpg">
+		</div>
+	</body>
+</html>		
+

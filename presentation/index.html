@@ -187,16 +187,17 @@
 				<section>
 					<section>
 					<h2>Nastavení Controlerů</h2>
-					<pre><code>@Controller
-public class HelloWorldController {
+					<pre><code>@RequestMapping("/items")
+@Controller
+public class ItemController {
 
-    @RequestMapping("/helloWorld")
-    public ModelAndView helloWorld() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("helloWorld");
-        mav.addObject("message", "Hello World!");
-        return mav;
-    }
+  @RequestMapping(value = "/{id}", produces = "text/html")
+  public String show(@PathVariable("id") final Long id, final Model uiModel) 
+  {
+	uiModel.addAttribute("item", itemRepository.findOne(id));
+	uiModel.addAttribute("itemId", id);
+	return "items/show";
+  }
 }
 					</code>
 				</pre>
@@ -245,7 +246,7 @@ public class NotesController extends AbstractController {
 					<pre><code>@RequestMapping(value = "/image", method = RequestMethod.GET, produces = "image/jpg")
 public @ResponseBody byte[] getFile()  {
   try {
-  	Retrieve image from the classpath.
+   //Retrieve image from the classpath.
     InputStream is = this.getClass().getResourceAsStream("/test.jpg"); 
     BufferedImage img = ImageIO.read(is);
     ByteArrayOutputStream bao = new ByteArrayOutputStream();
@@ -281,8 +282,34 @@ public @ResponseBody byte[] getFile()  {
 					</section>
 					<section>
 						<h2>Ukázka jednoduchého modulu</h2>
-						<pre><code></code></pre>
-					</section>			
+						<pre><code>define(['jquery'] , function ($) {
+    _deleteEvent = function(e) {
+       var $li = $(this).parents("li");
+       $li.hide();
+    };
+
+    //Define the module value by returning a value.
+    return  {  
+      init : function() {
+    	var node = this.init.arguments[0].node;
+        var $lis = $(node).find("li");
+        $lis.append('&nbsp;&lt;span class="delete"&gt;&#10006;&lt;/span&gt;');
+        $(node).on("click", ".delete", _deleteEvent);
+      }
+    };
+});
+						</code></pre>
+						<a href="amd-demo.html">amd-demo.html</a>
+					</section>
+					<section>
+						<h2>HTML pro modul</h2>
+						<pre><code>&lt;ul data-module=&quot;delete-row&quot;&gt;
+	&lt;li&gt;Milk&lt;/li&gt;
+	&lt;li&gt;Coffee&lt;/li&gt;
+	&lt;li&gt;Muffin&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<a href="amd-demo.html">amd-demo.html</a>
+					</section>		
 					</section>
 					<section>
 						<section>
@@ -337,9 +364,9 @@ public @ResponseBody byte[] getFile()  {
 							</ul>	
 						</section>	
 						<section>
-							<h2>Příklad - generování tabulky</h2>
-							<pre><code>&lt;table&gt;
-  &lt;c:forEach begin=&quot;0&quot; end=&quot;${fn:length(items)}&quot; items=&quot;${items}&quot; var=&quot;item&quot;&gt;
+							<h2>Generování tabulky</h2>
+							<pre><code>&lt;table xmlns:c="http://java.sun.com/jsp/jstl/core"&gt;
+  &lt;c:forEach items=&quot;${items}&quot; var=&quot;item&quot;&gt;
     &lt;tr&gt;
       &lt;td&gt;${item.name}&lt;/td&gt;
       &lt;td&gt;${item.price}&lt;/td&gt;
@@ -348,12 +375,16 @@ public @ResponseBody byte[] getFile()  {
 &lt;/table&gt;</code></pre>
 						</section>
 						<section>
-							<h2>Řešení 1/2 - vlastní tag</h2>
-							<pre><code>&lt;cust:table data=&quot;${items}&quot; /&gt;</code></pre>
+							<h2>Řešení - vlastní komponenta</h2>
+							<pre><code>&lt;div xmlns:cust="urn:jsptagdir:/WEB-INF/tags"&gt;
+
+  &lt;cust:table data=&quot;${items}&quot; columns=&quot;name,price&quot; labels=&quot;Name,Price&quot; /&gt;
+
+&lt;/div&gt;</code></pre>
 						</section>
 						<section>
-							<h2>Řešení 2/2 - implementace tagu</h2>
-							<pre><code></code></pre>
+							<h2>Implementace komponenty</h2>
+							<a href="https://github.com/octopuss/HIT2013/blob/master/demo/src/main/webapp/WEB-INF/tags/table.tagx">table.tagx</a>
 						</section>
 					</section>
 					<section>

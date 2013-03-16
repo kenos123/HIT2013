@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div class="span10" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:cust="urn:jsptagdir:/WEB-INF/tags" xmlns:form="http://www.springframework.org/tags/form" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:spring="http://www.springframework.org/tags">
+<spring:url value="/items/new" var="new_url"/>
+  <div data-module="success-handler" id="main-success-container"
+		class="alert alert-success hide alert-block main-success-container">
+		<button class="close" data-dismiss="alert">×</button>
+		<h4 class="alert-heading">
+			<spring:message code="ui.label.generalSuccess" />
+		</h4>
+		<p><jsp:output /></p>
+</div>
+<h2><spring:message code="ui.action.amds"/></h2>
+<spring:url value="/items" var="list_url"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+   	<cust:table columns="name,price" data="${items}" path="${list_url}" labels="dom.item.name,dom.item.price," id="table" update="true" delete="true"/>
+   	
+<ul data-module="todo">
+  	<li>Milk</li>
+    <li>Coffee</li>
+    <li>Muffin</li>
+</ul>
+<ul data-module="todo">
+  	<li>Milk</li>
+    <li>Coffee</li>
+    <li>Muffin</li>
+</ul>
+</div>
