@@ -6,10 +6,13 @@
     <jsp:output omit-xml-declaration="yes"/>
     <a href="${new_url}" class="btn btn-primary"><i class="icon icon-plus-sign icon-white"><jsp:text /></i><spring:message code="ui.action.addItem"/></a>
    	<table class="table table-bordered table-striped table-hover table-condensed">
-   	<CAPTION><spring:message code="ui.heading.items"/></CAPTION>
-   	<tr><th><spring:message code="dom.item.name"/></th><th><spring:message code="dom.item.price"/></th><th><jsp:text /></th></tr>
+   	<caption><spring:message code="ui.heading.items"/></caption>
+   	<tr><th><spring:message code="dom.item.image"/></th><th><spring:message code="dom.item.name"/></th><th><spring:message code="dom.item.price"/></th><th><jsp:text /></th></tr>
    	<c:forEach items="${items}" var="item">
+   		<spring:url value="/items/${item.id}?thumb" var="thumb_url"/>
+   		<spring:url value="/items/${item.id}?image" var="image_url"/>
    		<tr>
+   			<td><a href="${image_url}"><img src="${thumb_url}" alt="${item.name}"/></a></td>
    			<td>${item.name}</td>
    			<td>${item.price}</td>
    			<td>

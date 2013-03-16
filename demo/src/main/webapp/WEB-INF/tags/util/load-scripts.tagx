@@ -4,14 +4,16 @@
 	<spring:theme code="styleSheet" var="theme_css" />
 	 <spring:url value="/${theme_css}" var="theme_css_url" />
   <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
-  <c:set var="userLocale">
+  <c:set var="userLocale" scope="request">
     <c:set var="plocale">${pageContext.response.locale}</c:set>
     <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
   </c:set>
  <spring:message code="app.i18n.defaultLocale" var="defaultLocale"/> 
  <spring:message code="app.debugJavaScript" var="appDebugJavaScript"/>
  <spring:url value="/" var="appRootUrl"/>
+ <spring:url value="/resources/styles/main.css" var="main_css_url"/>
 <link rel="stylesheet" href="${theme_css_url}" />
+<link rel="stylesheet" href="${main_css_url}" />
 <script type="text/javascript">
 /*Localization variables for JS mediator*/
 

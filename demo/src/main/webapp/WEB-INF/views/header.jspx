@@ -10,6 +10,12 @@
      <spring:url var="url_theme_spacelab" value="">
         <spring:param name="theme" value="spacelab" />
      </spring:url>
+      <spring:url var="url_theme_shamrock" value="">
+        <spring:param name="theme" value="shamrock" />
+     </spring:url>
+      <spring:url var="url_theme_slate" value="">
+        <spring:param name="theme" value="slate" />
+     </spring:url>
       <div class="navbar-inner">
           <a class="brand" href="${home_url}"><spring:message code="ui.heading.appName"/></a>
           <ul class="nav pull-right">
@@ -19,6 +25,8 @@
                         <ul class="dropdown-menu">
                           <li><a href="${url_theme_standard}"><spring:message code="ui.theme.standard" /></a></li>
                           <li><a href="${url_theme_spacelab}"><spring:message code="ui.theme.spacelab" /></a></li>
+                           <li><a href="${url_theme_shamrock}"><spring:message code="ui.theme.shamrock" /></a></li>
+                            <li><a href="${url_theme_slate}"><spring:message code="ui.theme.slate" /></a></li>
                         </ul>
                       </li>
                     </ul>

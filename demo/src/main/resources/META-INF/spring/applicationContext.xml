@@ -22,7 +22,7 @@
 		within your classpath, provided they fall under the META-INF/spring directory. 
 		The located property files are parsed and their values can then be used within 
 		application context files in the form of ${propertyKey}. -->
-	<context:property-placeholder location="classpath*:META-INF/spring/*.properties" />
+	<context:property-placeholder location="classpath:database.properties,classpath:application.properties" />
 	<!-- Turn on AspectJ @Configurable support. As a result, any time you instantiate 
 		an object, Spring will attempt to perform dependency injection on that object. 
 		This occurs for instantiation via the "new" keyword, as well as via reflection. 
@@ -78,14 +78,12 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		id="entityManagerFactory">
 		<property name="persistenceUnitName" value="persistenceUnit" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="generateDdl" value="true" />
-				<property name="database" value="HSQL" />
-			</bean>
-		</property>
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<bean id="jpaValidator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	</bean>
+	
 	<bean id="errorHandler" class="com.generalidevelopment.hit2013.util.error.DefaultErrorHandler">
 		<property name="loggerMap">
 			<map>
