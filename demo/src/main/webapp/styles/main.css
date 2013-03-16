@@ -1,1 +1,2 @@
-.errors{display:none;}
+.errors,.hide{display:none;}
+.delete{cursor:pointer;}

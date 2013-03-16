@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div class="span10"  xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form"
+<div class="span10" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form"
 >
+<div data-module="err-handler" id="main-error-container"
+		class="alert alert-error hide alert-block main-error-container">
+		<button class="close" data-dismiss="alert">×</button>
+		<h4 class="alert-heading">
+			<spring:message code="ui.heading.generalError" />
+		</h4>
+		<p><jsp:output /></p>
+</div>
 <spring:url value="/items" var="list_url"/>
 <a href="${list_url}" class="btn btn-mini"><i class="icon icon-arrow-left"><jsp:text /></i><spring:message code="ui.action.back"/></a>
 <form:form action="${list_url}/${item.id}" modelAttribute="item" method="PUT">
+<util:errors path="*"/>
 <table class="table">
 <caption><spring:message code="dom.item"/></caption>
  <tr><td><spring:message code="dom.item.name"/></td><td><form:input path="name" cssClass="input-xxlarge"/></td></tr>	

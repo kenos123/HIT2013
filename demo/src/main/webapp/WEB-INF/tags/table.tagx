@@ -2,14 +2,14 @@
   <jsp:directive.tag import="java.util.ArrayList" />
   <jsp:output omit-xml-declaration="yes" />
 
-  <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
+  <jsp:directive.attribute name="id" type="java.lang.String" required="false" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
   <jsp:directive.attribute name="path" type="java.lang.String" required="false" rtexprvalue="true" description="Base path for table actions" />
   <jsp:directive.attribute name="data" type="java.util.Collection" required="true" rtexprvalue="true" description="The collection to be displayed in the table" />
   <jsp:directive.attribute name="update" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'update' link into table (default true)" />
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="columns" type="java.lang.String" required="true" rtexprvalue="true" description="Data item properties to display separated by comma" />
- <jsp:directive.attribute name="labels" type="java.lang.String" required="true" rtexprvalue="true" description="Data item labels to display separated by comma" />	
+  <jsp:directive.attribute name="labels" type="java.lang.String" required="true" rtexprvalue="true" description="Data item labels to display separated by comma" />	
 
   <c:if test="${empty render or render}">
   
@@ -54,8 +54,9 @@
             		<a class="btn btn-success btn-mini" href="${path}/${item.id}?form"><i class="icon-pencil icon-white"><jsp:text/></i><spring:message code="ui.action.edit"/></a>
             	</c:if>
             	<c:if test="${delete}">
-            		 &#160;<form:form modelAttribute="item" method="DELETE" action="${path}/${item.id}/json" cssStyle="display:inline">
-   					<button class="btn btn-danger btn-mini"><i class="icon-trash icon-white"><jsp:text/></i><spring:message code="ui.action.delete"/></button>
+            		<c:set value="${path}/${item.id}/json" var="delete_url" />
+            		 &#160;<form:form modelAttribute="item" method="DELETE" action="${delete_url}" cssStyle="display:inline">
+   					<button class="btn btn-danger btn-mini" data-module="delete-row"><i class="icon-trash icon-white"><jsp:text/></i><spring:message code="ui.action.delete"/></button>
    				</form:form>
             	</c:if>
             </td>

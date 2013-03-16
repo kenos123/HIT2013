@@ -4,6 +4,7 @@
  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <jsp:output omit-xml-declaration="yes"/>
   <spring:url value="/items" var="list_url" />
+  <spring:url value="/amd" var="amd_url" />
 <div class="span2">
  <div class="well sidebar-nav">
             <ul class="nav nav-list">
@@ -11,6 +12,7 @@
               <li><a href="${list_url}"><spring:message code="ui.action.listItems"/></a></li>
               <li class="divider"></li>
               <li class="nav-header"><spring:message code="ui.menu.amd"/></li>
+              <li><a href="${amd_url}"><spring:message code="ui.action.amds"/></a></li>
             </ul>  
 </div>
 </div>
