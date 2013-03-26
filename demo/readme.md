@@ -1,5 +1,11 @@
-Installing this project
+Downloading this project
 -----------------------
+You can download this project by clicking ZIP button on page
+https://github.com/octopuss/HIT2013
+or by cloning it from same location into your local repository
+
+Installing this project
+=======================
 1. Unpack Spring tool suite (STS) distribution into selected directory
 2. Run STS
 3. In shown dialog select desired workspace folder and press *Ok*
